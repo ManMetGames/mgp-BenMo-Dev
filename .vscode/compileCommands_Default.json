@@ -1,0 +1,362 @@
+[
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526CameraManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526CameraManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526Character.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526Character.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526GameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526GameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526PlayerController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\MGP_2526PlayerController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorCharacter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorCharacter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorPlayerController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\HorrorPlayerController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\UI\\HorrorUI.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Horror\\UI\\HorrorUI.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\EnvQueryContext_Target.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\EnvQueryContext_Target.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterAIController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterAIController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterNPC.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterNPC.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterStateTreeUtility.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\AI\\ShooterStateTreeUtility.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterCharacter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterCharacter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterPlayerController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\ShooterPlayerController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\UI\\ShooterBulletCounterUI.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\UI\\ShooterBulletCounterUI.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\UI\\ShooterUI.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\UI\\ShooterUI.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterPickup.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterPickup.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterProjectile.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterProjectile.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterWeapon.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterWeapon.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterWeaponHolder.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	},
+	{
+		"file": "D:\\GitHub Repos\\mgp-BenMo-Dev\\Source\\MGP_2526\\Variant_Shooter\\Weapons\\ShooterWeaponHolder.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\GitHub Repos\\mgp-BenMo-Dev\\.vscode\\compileCommands_Default\\MGP_2526.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.6\\Engine\\Source"
+	}
+]
