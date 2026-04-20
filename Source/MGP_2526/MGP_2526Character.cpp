@@ -9,6 +9,7 @@
 #include "InputActionValue.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "MGP_2526.h"
+#include "EnhancedInputSubsystems.h"
 
 AMGP_2526Character::AMGP_2526Character()
 {
@@ -42,14 +43,33 @@ AMGP_2526Character::AMGP_2526Character()
 	// Configure character movement
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 	GetCharacterMovement()->AirControl = 0.5f;
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }
 
 void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {	
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+			ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PC->GetLocalPlayer()))
+		{
+		Subsystem->AddMappingContext(InputMapping, 0);
+		}
+	}
+	
+	
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
+		// Sprint
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::StartSprint);
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &AMGP_2526Character::StopSprint);
+		if (!SprintAction)
+		{
+			UE_LOG(LogTemp, Error, TEXT("SprintAction is NULL"));
+		}
+
 		// Jumping
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AMGP_2526Character::DoJumpStart);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &AMGP_2526Character::DoJumpEnd);
@@ -61,14 +81,13 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::LookInput);
 		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::LookInput);
 
-		// Sprint
-		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &AMGP_2526Character::StartSprint);
-		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &AMGP_2526Character::StopSprint);
+		
 	}
 	else
 	{
 		UE_LOG(LogMGP_2526, Error, TEXT("'%s' Failed to find an Enhanced Input Component! This template is built to use the Enhanced Input system. If you intend to use the legacy system, then you will need to update this C++ file."), *GetNameSafe(this));
 	}
+
 }
 
 
@@ -124,18 +143,10 @@ void AMGP_2526Character::DoJumpEnd()
 	StopJumping();
 }
 
-void AMGP_2526Character::StartSprint()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Sprint START"));
-
-	bIsSprinting = true;
+void AMGP_2526Character::StartSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 }
 
-void AMGP_2526Character::StopSprint()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Sprint STOP"));
-
-	bIsSprinting = false;
+void AMGP_2526Character::StopSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
 }

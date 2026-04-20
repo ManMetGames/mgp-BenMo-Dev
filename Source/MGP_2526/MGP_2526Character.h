@@ -33,9 +33,16 @@ class AMGP_2526Character : public ACharacter
 
 protected:
 
+	
+	UPROPERTY(EditAnywhere, Category = "Input")	
+	class UInputMappingContext* InputMapping;
+
 	/** Sprint input action */
-	UPROPERTY(EditAnywhere, Catergory = "Input")
+	UPROPERTY(EditAnywhere, Category = "Input")	
 	UInputAction* SprintAction;
+
+	void StartSprint(); /* Added In*/
+	void StopSprint();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float WalkSpeed = 600.0f;
@@ -43,10 +50,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float SprintSpeed = 1000.0f;
 
-	bool bIsSprinting = false;
-
-	void StartSprint(); /* Added In*/
-	void StopSprint();
 
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, Category ="Input")
