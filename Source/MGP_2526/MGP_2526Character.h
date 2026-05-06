@@ -66,9 +66,19 @@ protected:
 	/** Mouse Look Input Action */
 	UPROPERTY(EditAnywhere, Category ="Input")
 	class UInputAction* MouseLookAction;
+
+    /** Wall Running Actions */
+    UPROPERTY(EditAnywhere, Category = "Wall Detection")
+    float WallCheckDistance = 100.0f;
+	UPROPERTY(EditAnywhere, Category = "Wall Detection")
+	FName WallTag = "Wall";
 	
 public:
 	AMGP_2526Character();
+
+    
+    UFUNCTION(BlueprintCallable, Category = "Wall Detection")
+    bool IsWallNearby();
 
 protected:
 

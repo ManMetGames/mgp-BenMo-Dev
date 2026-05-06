@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "MGP_2526Character.h"
+#include "DrawDebugHelpers.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -99,6 +100,12 @@ void AMGP_2526Character::MoveInput(const FInputActionValue& Value)
 	// pass the axis values to the move input
 	DoMove(MovementVector.X, MovementVector.Y);
 
+
+	if (IsWallNearby()){
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Near Wall with WallRunning Tag"));
+	}
+
+
 }
 
 void AMGP_2526Character::LookInput(const FInputActionValue& Value)
@@ -149,4 +156,41 @@ void AMGP_2526Character::StartSprint(){
 
 void AMGP_2526Character::StopSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+}
+
+bool AMGP_2526Character::IsWallNearby()
+{
+    FVector Start = GetActorLocation();
+    Start.Z += 50.0f;
+
+    FVector RightEnd = Start + (GetActorRightVector() * WallCheckDistance);
+    FVector LeftEnd  = Start - (GetActorRightVector() * WallCheckDistance);
+
+    FCollisionQueryParams Params;
+    Params.AddIgnoredActor(this);
+
+    FHitResult HitRight;
+    FHitResult HitLeft;
+
+    bool bHitRight = GetWorld()->LineTraceSingleByChannel(
+        HitRight,
+        Start,
+        RightEnd,
+        ECC_Visibility,
+        Params
+    );
+
+    bool bHitLeft = GetWorld()->LineTraceSingleByChannel(
+        HitLeft,
+        Start,
+        LeftEnd,
+        ECC_Visibility,
+        Params
+    );
+
+    // Check tags on any hit components (Make sure the wall is runnable)
+    bool bRightIsWall = bHitRight && HitRight.GetComponent() && HitRight.GetComponent()->ComponentHasTag(WallTag);
+    bool bLeftIsWall  = bHitLeft  && HitLeft.GetComponent()  && HitLeft.GetComponent()->ComponentHasTag(WallTag);
+    
+	return bRightIsWall || bLeftIsWall;
 }
