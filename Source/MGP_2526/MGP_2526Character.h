@@ -15,13 +15,13 @@ struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
-/**
- *  A basic first person character
- */
+/** 
+* A basic first person character 
+*/
 UCLASS(abstract)
 class AMGP_2526Character : public ACharacter
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 	/** Pawn mesh: first person view (arms; seen only by self) */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components", meta = (AllowPrivateAccess = "true"))
@@ -44,7 +44,22 @@ protected:
 	void StartSprint(); /* Added In*/
 	void StopSprint();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+    bool IsWallNearby(FVector &OutWallNormal, bool &IsRightWall);
+	void StartWallRun(const FVector& InWallNormal, bool IsRightWall);
+	void StopWallRun();
+	void UpdateWallRun();
+
+	// Wall Run
+	bool IsWallRunning;
+
+	FVector WallNormal;
+	FVector WallRunDirection;
+
+	float WallRunGravityScale = 0.3f;
+	float WallRunSpeed = 1200.0f;
+	float WallCheckDistance = 100.0f;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float WalkSpeed = 600.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
@@ -67,18 +82,13 @@ protected:
 	UPROPERTY(EditAnywhere, Category ="Input")
 	class UInputAction* MouseLookAction;
 
-    /** Wall Running Actions */
-    UPROPERTY(EditAnywhere, Category = "Wall Detection")
-    float WallCheckDistance = 100.0f;
 	UPROPERTY(EditAnywhere, Category = "Wall Detection")
 	FName WallTag = "Wall";
 	
 public:
 	AMGP_2526Character();
+	
 
-    
-    UFUNCTION(BlueprintCallable, Category = "Wall Detection")
-    bool IsWallNearby();
 
 protected:
 
@@ -108,7 +118,9 @@ protected:
 
 	/** Set up input action bindings */
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
-	
+
+	virtual void Tick(float DeltaTime) override;
+
 
 public:
 

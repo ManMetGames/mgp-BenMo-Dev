@@ -91,6 +91,30 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 
 }
 
+void AMGP_2526Character::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    FVector DetectedWallNormal;
+    bool bIsRightWall;
+
+    bool bWallFound = IsWallNearby(DetectedWallNormal, bIsRightWall);
+
+    if (bWallFound && GetCharacterMovement()->IsFalling())
+    {
+        if (!IsWallRunning)
+        {
+            StartWallRun(DetectedWallNormal, bIsRightWall);
+        }
+
+        UpdateWallRun();
+    }
+    else if (IsWallRunning)
+    {
+        StopWallRun();
+    }
+}
+
 
 void AMGP_2526Character::MoveInput(const FInputActionValue& Value)
 {
@@ -101,9 +125,9 @@ void AMGP_2526Character::MoveInput(const FInputActionValue& Value)
 	DoMove(MovementVector.X, MovementVector.Y);
 
 
-	if (IsWallNearby()){
+	/** if (IsWallNearby()){
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Near Wall with WallRunning Tag"));
-	}
+	} */
 
 
 }
@@ -140,8 +164,20 @@ void AMGP_2526Character::DoMove(float Right, float Forward)
 
 void AMGP_2526Character::DoJumpStart()
 {
-	// pass Jump to the character
-	Jump();
+
+	// Wall Jumping Mechanic (Override normal jump if wall running)
+	if (IsWallRunning)
+    {
+        FVector JumpDir = WallNormal + FVector::UpVector;
+        LaunchCharacter(JumpDir * 600.0f, true, true);
+
+        StopWallRun();
+	}
+	else
+	{
+		// pass Jump to the character
+		Jump();
+	}
 }
 
 void AMGP_2526Character::DoJumpEnd()
@@ -150,24 +186,31 @@ void AMGP_2526Character::DoJumpEnd()
 	StopJumping();
 }
 
+
+// Sprinting Mechanic
 void AMGP_2526Character::StartSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 }
-
 void AMGP_2526Character::StopSprint(){
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;	
 }
 
-bool AMGP_2526Character::IsWallNearby()
+
+//Old Detection Code
+/** bool AMGP_2526Character::IsWallNearbyOld()
 {
     FVector Start = GetActorLocation();
-    Start.Z += 50.0f;
+    Start.Z += 50.0f; //Getting the starting point for the line trace
 
     FVector RightEnd = Start + (GetActorRightVector() * WallCheckDistance);
     FVector LeftEnd  = Start - (GetActorRightVector() * WallCheckDistance);
 
-    FCollisionQueryParams Params;
-    Params.AddIgnoredActor(this);
+    
+	FCollisionQueryParams Params;
+    // No longer needed - This was was to make sure the line trace could 
+	// detect something other than the player before tags.
+	//// edit: We need it.
+	Params.AddIgnoredActor(this);
 
     FHitResult HitRight;
     FHitResult HitLeft;
@@ -193,4 +236,91 @@ bool AMGP_2526Character::IsWallNearby()
     bool bLeftIsWall  = bHitLeft  && HitLeft.GetComponent()  && HitLeft.GetComponent()->ComponentHasTag(WallTag);
     
 	return bRightIsWall || bLeftIsWall;
+} 
+	
+End of Old Code*/	
+
+// Wall Running Detection
+
+bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
+{
+    FVector Start = GetActorLocation();
+    Start.Z += 50.0f;
+
+	//How far we want the detection to reach. 
+    FVector RightEnd = Start + (GetActorRightVector() * WallCheckDistance);
+    FVector LeftEnd  = Start - (GetActorRightVector() * WallCheckDistance);
+
+    FCollisionQueryParams Params;
+    Params.AddIgnoredActor(this); //
+
+    FHitResult Hit;
+
+    if (GetWorld()->LineTraceSingleByChannel(Hit, Start, RightEnd, ECC_Visibility))
+    {
+        if (Hit.ImpactNormal.Z < 0.2f)
+        {
+            OutWallNormal = Hit.ImpactNormal;
+            IsRightWall = true;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Right Side Wall Detected"));
+
+            return true;
+        }
+    }
+
+    if (GetWorld()->LineTraceSingleByChannel(Hit, Start, LeftEnd, ECC_Visibility))
+    {
+        if (Hit.ImpactNormal.Z < 0.2f)
+        {
+            OutWallNormal = Hit.ImpactNormal;
+            IsRightWall = false;
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Left Side Wall Detected"));
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void AMGP_2526Character::UpdateWallRun()
+{
+    FVector Velocity = WallRunDirection * WallRunSpeed;
+
+    GetCharacterMovement()->Velocity = Velocity;
+
+    GetCharacterMovement()->AddForce(-WallNormal * 200000.0f);
+}
+
+//Start Wall Run
+void AMGP_2526Character::StartWallRun(const FVector& InWallNormal, bool bIsRightWall)
+{
+    IsWallRunning = true;
+    WallNormal = InWallNormal;
+	
+
+    FVector Up = FVector::UpVector;
+
+    WallRunDirection = FVector::CrossProduct(WallNormal, Up);
+
+    // Old Code 
+	/* if (!bIsRightWall)
+    {
+        WallRunDirection *= -1;
+    } */
+
+	//Makes sure the player is running in the direction they are facing. 
+	float Dot = FVector::DotProduct(WallRunDirection, GetActorForwardVector());
+	//Otherwise, swap the direction.
+	if (Dot < 0)
+	{
+    	WallRunDirection *= -1;
+	}	
+
+    GetCharacterMovement()->GravityScale = WallRunGravityScale;
+}
+
+void AMGP_2526Character::StopWallRun()
+{
+    IsWallRunning = false;
+    GetCharacterMovement()->GravityScale = 1.0f;
 }
