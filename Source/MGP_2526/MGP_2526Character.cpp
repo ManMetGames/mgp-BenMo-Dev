@@ -64,12 +64,12 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		// Sprint
-		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::StartSprint);
+		/*EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::StartSprint);
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &AMGP_2526Character::StopSprint);
 		if (!SprintAction)
 		{
 			UE_LOG(LogTemp, Error, TEXT("SprintAction is NULL"));
-		}
+		}*/
 
 		// Jumping
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AMGP_2526Character::DoJumpStart);
@@ -96,15 +96,16 @@ void AMGP_2526Character::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 
     FVector DetectedWallNormal;
-    bool bIsRightWall;
+    
 
-    bool bWallFound = IsWallNearby(DetectedWallNormal, bIsRightWall);
+    bool bWallFound = IsWallNearby(DetectedWallNormal, IsTheRightWall);
 
-    if (bWallFound && GetCharacterMovement()->IsFalling())
+	float CurrentSpeed = GetVelocity().Size2D();
+    if (CanWallRun &&bWallFound && GetCharacterMovement()->IsFalling() && CurrentSpeed > MinWallRunSpeed)
     {
         if (!IsWallRunning)
         {
-            StartWallRun(DetectedWallNormal, bIsRightWall);
+            StartWallRun(DetectedWallNormal, IsTheRightWall);
         }
 
         UpdateWallRun();
@@ -113,6 +114,7 @@ void AMGP_2526Character::Tick(float DeltaTime)
     {
         StopWallRun();
     }
+
 }
 
 
@@ -169,9 +171,20 @@ void AMGP_2526Character::DoJumpStart()
 	if (IsWallRunning)
     {
         FVector JumpDir = WallNormal + FVector::UpVector;
-        LaunchCharacter(JumpDir * 600.0f, true, true);
+        LaunchCharacter(JumpDir * 600.0f, false, false);
 
         StopWallRun();
+
+		CanWallRun = false;
+
+		GetWorldTimerManager().SetTimer(
+        	WallRunCooldownTimer,
+        	this,
+        	&AMGP_2526Character::ResetWallRun,
+        	0.25f,
+        	false
+    	);
+
 	}
 	else
 	{
@@ -188,12 +201,12 @@ void AMGP_2526Character::DoJumpEnd()
 
 
 // Sprinting Mechanic
-void AMGP_2526Character::StartSprint(){
+/*void AMGP_2526Character::StartSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
 }
 void AMGP_2526Character::StopSprint(){
 	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;	
-}
+}*/
 
 
 //Old Detection Code
@@ -256,27 +269,37 @@ bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
 
     FHitResult Hit;
 
+	//Sends out the RayTrace to the right.
     if (GetWorld()->LineTraceSingleByChannel(Hit, Start, RightEnd, ECC_Visibility))
     {
-        if (Hit.ImpactNormal.Z < 0.2f)
-        {
-            OutWallNormal = Hit.ImpactNormal;
-            IsRightWall = true;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Right Side Wall Detected"));
+		//Checks if it has the right tag
+		if (Hit.GetComponent() && Hit.GetComponent()->ComponentHasTag(WallTag))
+		{
+			//Makes sure its not a roof nor floor.
+			if (Hit.ImpactNormal.Z < 0.2f)
+			{
+				//
+				OutWallNormal = Hit.ImpactNormal;
+				IsRightWall = true;
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Right Side Wall Detected"));
 
-            return true;
-        }
+				return true;
+			}
+		}
     }
 
     if (GetWorld()->LineTraceSingleByChannel(Hit, Start, LeftEnd, ECC_Visibility))
     {
-        if (Hit.ImpactNormal.Z < 0.2f)
-        {
-            OutWallNormal = Hit.ImpactNormal;
-            IsRightWall = false;
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Left Side Wall Detected"));
-            return true;
-        }
+		if (Hit.GetComponent() && Hit.GetComponent()->ComponentHasTag(WallTag))
+		{
+			if (Hit.ImpactNormal.Z < 0.2f)
+			{
+				OutWallNormal = Hit.ImpactNormal;
+				IsRightWall = false;
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Left Side Wall Detected"));
+				return true;
+			}
+		}
     }
 
     return false;
@@ -284,10 +307,28 @@ bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
 
 void AMGP_2526Character::UpdateWallRun()
 {
-    FVector Velocity = WallRunDirection * WallRunSpeed;
 
-    GetCharacterMovement()->Velocity = Velocity;
 
+    FVector Velocity = WallRunDirection * CurrentWallRunSpeed;
+
+	//To prevent wallrunning while at a low speed.
+	if (CurrentWallRunSpeed < MinWallRunSpeed)
+	{
+    	StopWallRun();
+    	return;
+	}
+	CurrentWallRunSpeed -= 150.0f * GetWorld()->GetDeltaSeconds();
+
+	//GetCharacterMovement()->Velocity = Velocity;
+	//This allows for a more smoother feel when jumping onto a wall run.
+	GetCharacterMovement()->Velocity =
+    FMath::VInterpTo(
+        GetCharacterMovement()->Velocity,
+        Velocity,
+        GetWorld()->GetDeltaSeconds(),
+        8.0f
+    );
+    //GetCharacterMovement()->Velocity = Velocity;
     GetCharacterMovement()->AddForce(-WallNormal * 200000.0f);
 }
 
@@ -295,6 +336,8 @@ void AMGP_2526Character::UpdateWallRun()
 void AMGP_2526Character::StartWallRun(const FVector& InWallNormal, bool bIsRightWall)
 {
     IsWallRunning = true;
+	CurrentWallRunSpeed = GetVelocity().Size2D();
+
     WallNormal = InWallNormal;
 	
 
@@ -323,4 +366,9 @@ void AMGP_2526Character::StopWallRun()
 {
     IsWallRunning = false;
     GetCharacterMovement()->GravityScale = 1.0f;
+}
+
+void AMGP_2526Character::ResetWallRun()
+{
+    CanWallRun = true;
 }

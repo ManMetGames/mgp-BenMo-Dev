@@ -44,20 +44,29 @@ protected:
 	void StartSprint(); /* Added In*/
 	void StopSprint();
 
-    bool IsWallNearby(FVector &OutWallNormal, bool &IsRightWall);
+    
 	void StartWallRun(const FVector& InWallNormal, bool IsRightWall);
 	void StopWallRun();
 	void UpdateWallRun();
 
 	// Wall Run
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Wall Running")
 	bool IsWallRunning;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Wall Running")
+	bool IsTheRightWall;
+
+	void ResetWallRun();
 
 	FVector WallNormal;
 	FVector WallRunDirection;
 
+	float MinWallRunSpeed = 600.0f;
+	float CurrentWallRunSpeed = 0.0f;
 	float WallRunGravityScale = 0.3f;
 	float WallRunSpeed = 1200.0f;
 	float WallCheckDistance = 100.0f;
+	bool CanWallRun = true;
+	FTimerHandle WallRunCooldownTimer;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	float WalkSpeed = 600.0f;
@@ -114,6 +123,8 @@ protected:
 	UFUNCTION(BlueprintCallable, Category="Input")
 	virtual void DoJumpEnd();
 
+	UFUNCTION(BlueprintCallable, Category="WallRunning")
+	bool IsWallNearby(FVector &OutWallNormal, bool &IsRightWall);
 protected:
 
 	/** Set up input action bindings */
