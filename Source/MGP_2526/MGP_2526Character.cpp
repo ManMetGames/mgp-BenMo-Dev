@@ -82,7 +82,9 @@ void AMGP_2526Character::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::LookInput);
 		EnhancedInputComponent->BindAction(MouseLookAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::LookInput);
 
-		
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Triggered, this, &AMGP_2526Character::StartSprint);
+		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &AMGP_2526Character::StopSprint);
+
 	}
 	else
 	{
@@ -97,9 +99,10 @@ void AMGP_2526Character::Tick(float DeltaTime)
 
     FVector DetectedWallNormal;
     
-
+	// Check for nearby walls and update wall running state
     bool bWallFound = IsWallNearby(DetectedWallNormal, IsTheRightWall);
 
+	// Get the current horizontal speed of the character
 	float CurrentSpeed = GetVelocity().Size2D();
     if (CanWallRun &&bWallFound && GetCharacterMovement()->IsFalling() && CurrentSpeed > MinWallRunSpeed)
     {
@@ -114,6 +117,9 @@ void AMGP_2526Character::Tick(float DeltaTime)
     {
         StopWallRun();
     }
+
+	// Update sprinting speed
+	UpdateSprint();
 
 }
 
@@ -143,6 +149,35 @@ void AMGP_2526Character::LookInput(const FInputActionValue& Value)
 	DoAim(LookAxisVector.X, LookAxisVector.Y);
 
 }
+
+
+
+void AMGP_2526Character::StartSprint()
+{
+	isSprinting = true;
+
+}
+//First built in BluePrints, then added in C++. 
+void AMGP_2526Character::UpdateSprint(){
+	float SpeedTarget = isSprinting ? MaxMovementSpeed : MinMovementSpeed;
+	
+	if (!IsWallRunning)// Don't allow sprinting while wall running
+	{
+			GetCharacterMovement()->MaxWalkSpeed = FMath::FInterpTo(
+				GetCharacterMovement()->MaxWalkSpeed,
+				SpeedTarget,
+				GetWorld()->GetDeltaSeconds(),
+				SpeedTime
+			); 
+	}
+}
+void AMGP_2526Character::StopSprint()
+{
+
+	isSprinting = false;
+}
+	
+
 
 void AMGP_2526Character::DoAim(float Yaw, float Pitch)
 {
@@ -212,7 +247,7 @@ void AMGP_2526Character::StopSprint(){
 //Old Detection Code
 /** bool AMGP_2526Character::IsWallNearbyOld()
 {
-    FVector Start = GetActorLocation();
+	FVector Start = GetActorLocation();
     Start.Z += 50.0f; //Getting the starting point for the line trace
 
     FVector RightEnd = Start + (GetActorRightVector() * WallCheckDistance);
@@ -250,7 +285,7 @@ void AMGP_2526Character::StopSprint(){
     
 	return bRightIsWall || bLeftIsWall;
 } 
-	
+	z|z
 End of Old Code*/	
 
 // Wall Running Detection
@@ -281,7 +316,7 @@ bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
 				//
 				OutWallNormal = Hit.ImpactNormal;
 				IsRightWall = true;
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Right Side Wall Detected"));
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Right Side Wall"));
 
 				return true;
 			}
@@ -289,14 +324,14 @@ bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
     }
 
     if (GetWorld()->LineTraceSingleByChannel(Hit, Start, LeftEnd, ECC_Visibility))
-    {
+	{
 		if (Hit.GetComponent() && Hit.GetComponent()->ComponentHasTag(WallTag))
 		{
 			if (Hit.ImpactNormal.Z < 0.2f)
 			{
 				OutWallNormal = Hit.ImpactNormal;
 				IsRightWall = false;
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Left Side Wall Detected"));
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, TEXT("Left Side Wall"));
 				return true;
 			}
 		}
@@ -307,8 +342,6 @@ bool AMGP_2526Character::IsWallNearby(FVector& OutWallNormal, bool& IsRightWall)
 
 void AMGP_2526Character::UpdateWallRun()
 {
-
-
     FVector Velocity = WallRunDirection * CurrentWallRunSpeed;
 
 	//To prevent wallrunning while at a low speed.
@@ -328,7 +361,8 @@ void AMGP_2526Character::UpdateWallRun()
         GetWorld()->GetDeltaSeconds(),
         8.0f
     );
-    //GetCharacterMovement()->Velocity = Velocity;
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Velocity: %s"), *GetCharacterMovement()->Velocity.ToString()));
+    
     GetCharacterMovement()->AddForce(-WallNormal * 200000.0f);
 }
 
@@ -346,7 +380,7 @@ void AMGP_2526Character::StartWallRun(const FVector& InWallNormal, bool bIsRight
     WallRunDirection = FVector::CrossProduct(WallNormal, Up);
 
     // Old Code 
-	/* if (!bIsRightWall)
+	/* if (!bIsRightWall)Z
     {
         WallRunDirection *= -1;
     } */

@@ -43,11 +43,7 @@ protected:
 
 	void StartSprint(); /* Added In*/
 	void StopSprint();
-
-    
-	void StartWallRun(const FVector& InWallNormal, bool IsRightWall);
-	void StopWallRun();
-	void UpdateWallRun();
+	void UpdateSprint();
 
 	// Wall Run
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Wall Running")
@@ -68,11 +64,17 @@ protected:
 	bool CanWallRun = true;
 	FTimerHandle WallRunCooldownTimer;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-	float WalkSpeed = 600.0f;
+	void StartWallRun(const FVector& InWallNormal, bool IsRightWall);
+	void StopWallRun();
+	void UpdateWallRun();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
-	float SprintSpeed = 1000.0f;
+	// Sprint Momentum
+	float MaxMovementSpeed = 1200.0f;
+	float MinMovementSpeed = 550.0f;
+	bool isSprinting = false;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	float SpeedTime = 4.0f;
 
 
 	/** Jump Input Action */
